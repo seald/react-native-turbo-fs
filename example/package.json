@@ -12,8 +12,6 @@
     "pods": "bundle install && bundle exec pod install --project-directory=ios/"
   },
   "dependencies": {
-    "base-64": "^1.0.0",
-    "base64-js": "^1.5.1",
     "buffer": "^6.0.3",
     "chai": "^5.1.0",
     "events": "^3.3.0",

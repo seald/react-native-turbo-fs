@@ -54,43 +54,45 @@ describe('turbo-fs', () => {
 });
 
 describe('turbo-fs performance', () => {
-  const blockSize = 512 * 1024;
-  const randValues = Array(blockSize)
-    .fill(0)
-    .map(() => Math.floor(Math.random() * 256));
-  const buffer = new ArrayBuffer(randValues.length);
-  const uint8Array = new Uint8Array(buffer);
-  for (let i = 0; i < randValues.length; i++) {
-    uint8Array[i] = randValues[i] as number;
-  }
-
-  // performance for append
-  const fileSizeInMB = 100;
-  const fileSize = fileSizeInMB * 1024 * 1024;
-  const iterations = fileSize / randValues.length;
-  console.log(
-    `Generating ${fileSizeInMB}MB file in ${randValues.length} bytes blocks...`,
-  );
-  let t0 = Date.now();
-  for (let i = 0; i < iterations; i++) {
-    append(`${baseDir}/test-perf-${rand}`, buffer);
-  }
-  let duration = (Date.now() - t0) / 1000;
-  console.log(`Generated ${fileSizeInMB}MB file in ${duration.toFixed(3)}s`);
-  console.log(`Speed: ${(fileSizeInMB / duration).toFixed(2)}MB/s`);
-
-  // performance for read
-  let readBytes = 0;
-  t0 = Date.now();
-  while (true) {
-    const buff = read(`${baseDir}/test-perf-${rand}`, blockSize, readBytes);
-    if (buff.byteLength === 0) {
-      break;
+  it('turbo-fs performance', async () => {
+    const blockSize = 512 * 1024;
+    const randValues = Array(blockSize)
+      .fill(0)
+      .map(() => Math.floor(Math.random() * 256));
+    const buffer = new ArrayBuffer(randValues.length);
+    const uint8Array = new Uint8Array(buffer);
+    for (let i = 0; i < randValues.length; i++) {
+      uint8Array[i] = randValues[i] as number;
     }
-    readBytes += buff.byteLength;
-  }
-  duration = (Date.now() - t0) / 1000;
-  assert.strictEqual(readBytes, fileSize);
-  console.log(`Read ${fileSizeInMB}MB file in ${duration.toFixed(3)}s`);
-  console.log(`Speed: ${(fileSizeInMB / duration).toFixed(2)}MB/s`);
+
+    // performance for append
+    const fileSizeInMB = 100;
+    const fileSize = fileSizeInMB * 1024 * 1024;
+    const iterations = fileSize / randValues.length;
+    console.log(
+      `Generating ${fileSizeInMB}MB file in ${randValues.length} bytes blocks...`,
+    );
+    let t0 = Date.now();
+    for (let i = 0; i < iterations; i++) {
+      append(`${baseDir}/test-perf-${rand}`, buffer);
+    }
+    let duration = (Date.now() - t0) / 1000;
+    console.log(`Generated ${fileSizeInMB}MB file in ${duration.toFixed(3)}s`);
+    console.log(`Speed: ${(fileSizeInMB / duration).toFixed(2)}MB/s`);
+
+    // performance for read
+    let readBytes = 0;
+    t0 = Date.now();
+    while (true) {
+      const buff = read(`${baseDir}/test-perf-${rand}`, blockSize, readBytes);
+      if (buff.byteLength === 0) {
+        break;
+      }
+      readBytes += buff.byteLength;
+    }
+    duration = (Date.now() - t0) / 1000;
+    assert.strictEqual(readBytes, fileSize);
+    console.log(`Read ${fileSizeInMB}MB file in ${duration.toFixed(3)}s`);
+    console.log(`Speed: ${(fileSizeInMB / duration).toFixed(2)}MB/s`);
+  });
 });

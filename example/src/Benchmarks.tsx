@@ -2,9 +2,6 @@
 import React from 'react';
 import {useState} from 'react';
 import {StyleSheet, View, Text, Pressable, Platform} from 'react-native';
-import jsBase64 from 'base64-js';
-import {toByteArray, fromByteArray} from '@seald-io/react-native-turbo-fs';
-import {data} from './image.json';
 
 const sleep = (t: number) => new Promise(resolve => setTimeout(resolve, t));
 
@@ -21,17 +18,9 @@ const Benchmarks = () => {
 
   const handleNativeBase64Press = async () => {
     setProcessingNativeBase64(true);
-    let dataToProcess = data;
     await sleep(1);
     const startTime = performance.now();
-
-    for (let iter = 0; iter < 30; iter++) {
-      const decoded = toByteArray(dataToProcess);
-      dataToProcess = fromByteArray(decoded);
-      if (dataToProcess !== data) {
-        throw new Error('Data does not match');
-      }
-    }
+    // TODO: do our calls calls
     const finishedTime = performance.now();
     console.log('done! took', finishedTime - startTime, 'milliseconds');
     setNativeBase64Result(finishedTime - startTime);
@@ -40,14 +29,9 @@ const Benchmarks = () => {
 
   const handleJSBase64Press = async () => {
     setProcessingJSBase64(true);
-    let dataToProcess = data;
     await sleep(1);
     const startTime = performance.now();
-
-    for (let iter = 0; iter < 30; iter++) {
-      const decoded = jsBase64.toByteArray(dataToProcess);
-      dataToProcess = jsBase64.fromByteArray(decoded);
-    }
+    // TODO: do comparison calls
     const finishedTime = performance.now();
     console.log('done! took', finishedTime - startTime, 'milliseconds');
     setJSBase64Result(finishedTime - startTime);

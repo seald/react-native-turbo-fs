@@ -16,7 +16,6 @@ include_directories(
 add_library(
   ${PACKAGE_NAME}
   SHARED
-  ../cpp/base64.h
   ../cpp/react-native-turbo-fs.cpp
   ../cpp/react-native-turbo-fs.h
   cpp-adapter.cpp

@@ -25,12 +25,12 @@ RCT_EXPORT_MODULE(TurboFs)
   }
 
   [bridge dispatchBlock:^{
-    installBase64(*(facebook::jsi::Runtime *)cxxBridge.runtime);
+    installTurboFs(*(facebook::jsi::Runtime *)cxxBridge.runtime);
   } queue:RCTJSThread];
 }
 
 - (void)invalidate {
-  cleanupBase64();
+  cleanupTurboFs();
 }
 
 @end

@@ -5,13 +5,6 @@ import {rootSuite} from '../src/MochaRNAdapter';
 
 // these imports load the tests into the root suite
 import './tests/turbo-fs';
-import './tests/basics';
-import './tests/convert';
-import './tests/corrupt';
-import './tests/url-safe';
-import './tests/linebreaks';
-import './tests/zero';
-import './tests/big-data';
 
 export const useTestList = (): Suites => {
   const [suites, setSuites] = useState<Suites>({});

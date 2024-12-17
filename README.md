@@ -28,8 +28,6 @@ append('my-other-file', buffer);
 
 ## Methods
 
-Compatible with [base64-js](https://github.com/beatgammit/base64-js).
-
 #### `read(filePath: string, size: number, position: number): ArrayBuffer`
 
 Reads a chunk of size `size` from the file at `filePath`, starting from position `position`.
@@ -42,7 +40,7 @@ If there is nothing to read at that position, it returns an ArrayBuffer of lengt
 
 #### `append(filePath: string, data: ArrayBuffer): void`
 
-Takes a base64 string and returns a byte array. Optional `removeLinebreaks` removes all `\n` characters.
+Appends the given data to the end of the file at `filePath`.
 
 ## Contributing
 
