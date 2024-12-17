@@ -1,7 +1,7 @@
 {
-  "name": "react-native-quick-base64",
-  "version": "2.1.2",
-  "description": "A native implementation of base64 in C++ for React Native",
+  "name": "@seald-io/react-native-turbo-fs",
+  "version": "0.1.0",
+  "description": "React-Native Turbo-module for fast FS operations with native ArrayBuffer support ",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
   "types": "lib/typescript/src/index.d.ts",
@@ -13,7 +13,7 @@
     "android",
     "ios",
     "cpp",
-    "react-native-quick-base64.podspec",
+    "react-native-turbo-fs.podspec",
     "!lib/typescript/example",
     "!android/build",
     "!ios/build",
@@ -36,13 +36,13 @@
     "ios",
     "android"
   ],
-  "repository": "https://github.com/craftzdog/react-native-quick-base64",
-  "author": "Takuya Matsuyama <hi@craftz.dog> (https://github.com/craftzdog)",
+  "repository": "https://github.com/seald/react-native-turbo-fs",
+  "author": "Seald SAS <contact@seald.io> (https://github.com/seald)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/craftzdog/react-native-quick-base64/issues"
+    "url": "https://github.com/seald/react-native-turbo-fs/issues"
   },
-  "homepage": "https://github.com/craftzdog/react-native-quick-base64#readme",
+  "homepage": "https://github.com/seald/react-native-turbo-fs#readme",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },

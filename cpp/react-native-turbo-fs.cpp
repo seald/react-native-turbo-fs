@@ -1,4 +1,4 @@
-#include "react-native-quick-base64.h"
+#include "react-native-turbo-fs.h"
 #include "base64.h"
 
 #include <iostream>
@@ -30,7 +30,7 @@ bool valueToString(jsi::Runtime& runtime, const jsi::Value& value, std::string* 
 }
 
 void installBase64(jsi::Runtime& jsiRuntime) {
-  std::cout << "Initializing react-native-quick-base64" << "\n";
+  std::cout << "Initializing react-native-turbo-fs" << "\n";
 
   auto base64FromArrayBuffer = jsi::Function::createFromHostFunction(
       jsiRuntime,
@@ -87,15 +87,15 @@ void installBase64(jsi::Runtime& jsiRuntime) {
   );
   jsiRuntime.global().setProperty(jsiRuntime, "base64ToArrayBuffer", std::move(base64ToArrayBuffer));
 
-  auto quickFsRead = jsi::Function::createFromHostFunction(
+  auto turboFsRead = jsi::Function::createFromHostFunction(
       jsiRuntime,
-      jsi::PropNameID::forAscii(jsiRuntime, "quickFsRead"),
+      jsi::PropNameID::forAscii(jsiRuntime, "turboFsRead"),
       3,  // filePath: string, size: number, position: number
       [](jsi::Runtime& runtime, const jsi::Value& thisValue, const jsi::Value* arguments, std::size_t count) -> jsi::Value {
         if (count != 3 || !arguments[0].isString() || !arguments[1].isNumber() || !arguments[2].isNumber()) {
           throw facebook::jsi::JSError(
             runtime,
-            "quickFsRead expects exactly 3 arguments: filePath: string, size: number, position: number"
+            "turboFsRead expects exactly 3 arguments: filePath: string, size: number, position: number"
           );
         }
         std::string filePath = arguments[0].asString(runtime).utf8(runtime);
@@ -156,17 +156,17 @@ void installBase64(jsi::Runtime& jsiRuntime) {
         }
       }
   );
-  jsiRuntime.global().setProperty(jsiRuntime, "quickFsRead", std::move(quickFsRead));
+  jsiRuntime.global().setProperty(jsiRuntime, "turboFsRead", std::move(turboFsRead));
 
-  auto quickFsAppend = jsi::Function::createFromHostFunction(
+  auto turboFsAppend = jsi::Function::createFromHostFunction(
       jsiRuntime,
-      jsi::PropNameID::forAscii(jsiRuntime, "quickFsAppend"),
+      jsi::PropNameID::forAscii(jsiRuntime, "turboFsAppend"),
       2,  // filePath: string, data: ArrayBuffer
       [](jsi::Runtime& runtime, const jsi::Value& thisValue, const jsi::Value* arguments, std::size_t count) -> jsi::Value {
         if (count != 2 || !arguments[0].isString() || !arguments[1].isObject() || !arguments[1].asObject(runtime).isArrayBuffer(runtime)) {
           throw facebook::jsi::JSError(
             runtime,
-            "quickFsAppend expects exactly 2 arguments: filePath: string, data: ArrayBuffer"
+            "turboFsAppend expects exactly 2 arguments: filePath: string, data: ArrayBuffer"
           );
         }
         std::string filePath = arguments[0].asString(runtime).utf8(runtime);
@@ -203,7 +203,7 @@ void installBase64(jsi::Runtime& jsiRuntime) {
         }
       }
   );
-  jsiRuntime.global().setProperty(jsiRuntime, "quickFsAppend", std::move(quickFsAppend));
+  jsiRuntime.global().setProperty(jsiRuntime, "turboFsAppend", std::move(turboFsAppend));
 }
 
 void cleanupBase64() {

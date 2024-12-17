@@ -1,5 +1,5 @@
 import {assert} from 'chai';
-import {read, append} from 'react-native-quick-base64';
+import {read, append} from '@seald-io/react-native-turbo-fs';
 import {describe, it} from '../MochaRNAdapter';
 
 function stringToArrayBuffer(str: string): ArrayBuffer {
@@ -14,7 +14,7 @@ function stringToArrayBuffer(str: string): ArrayBuffer {
   return buffer;
 }
 
-const baseDir = '/data/user/0/com.quickbase64example/files';
+const baseDir = '/data/user/0/com.turbofsexample/files';
 
 const rand = Math.floor(Math.random() * 100000).toString();
 

@@ -1,7 +1,7 @@
-project(QuickBase64)
+project(TurboFs)
 cmake_minimum_required(VERSION 3.9.0)
 
-set (PACKAGE_NAME "quickbase64")
+set (PACKAGE_NAME "turbofs")
 set (BUILD_DIR ${CMAKE_SOURCE_DIR}/build)
 set (CMAKE_VERBOSE_MAKEFILE ON)
 set (CMAKE_CXX_STANDARD 17)
@@ -17,8 +17,8 @@ add_library(
   ${PACKAGE_NAME}
   SHARED
   ../cpp/base64.h
-  ../cpp/react-native-quick-base64.cpp
-  ../cpp/react-native-quick-base64.h
+  ../cpp/react-native-turbo-fs.cpp
+  ../cpp/react-native-turbo-fs.h
   cpp-adapter.cpp
 )
 

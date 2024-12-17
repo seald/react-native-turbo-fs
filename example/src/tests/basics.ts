@@ -1,5 +1,5 @@
 import {expect} from 'chai';
-import {atob, btoa, getNative} from 'react-native-quick-base64';
+import {atob, btoa, getNative} from '@seald-io/react-native-turbo-fs';
 import {describe, it} from '../MochaRNAdapter';
 import {data} from '../image.json';
 

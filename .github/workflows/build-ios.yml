@@ -74,8 +74,8 @@ jobs:
         run: "set -o pipefail && xcodebuild \
           CC=clang CPLUSPLUS=clang++ LD=clang LDPLUSPLUS=clang++ \
           -derivedDataPath build -UseModernBuildSystem=YES \
-          -workspace QuickBase64Example.xcworkspace \
-          -scheme QuickBase64Example \
+          -workspace TurboFsExample.xcworkspace \
+          -scheme TurboFsExample \
           -sdk iphonesimulator \
           -configuration Debug \
           -destination 'platform=iOS Simulator,name=iPhone 13 Pro' \

@@ -94,9 +94,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.quickbase64example"
+    namespace "com.turbofsexample"
     defaultConfig {
-        applicationId "com.quickbase64example"
+        applicationId "com.turbofsexample"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

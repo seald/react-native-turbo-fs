@@ -4,7 +4,7 @@ import {
   fromByteArray,
   toByteArray,
   trimBase64Padding,
-} from 'react-native-quick-base64';
+} from '@seald-io/react-native-turbo-fs';
 import {describe, it} from '../MochaRNAdapter';
 
 // from base64-js library's test suite

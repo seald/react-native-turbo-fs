@@ -1,14 +1,14 @@
-#import "QuickBase64Module.h"
+#import "TurboFsModule.h"
 #import <React/RCTBridge+Private.h>
 #import <React/RCTUtils.h>
-#import "../cpp/react-native-quick-base64.h"
+#import "../cpp/react-native-turbo-fs.h"
 
-@implementation QuickBase64Module
+@implementation TurboFsModule
 
 @synthesize bridge = _bridge;
 @synthesize methodQueue = _methodQueue;
 
-RCT_EXPORT_MODULE(QuickBase64)
+RCT_EXPORT_MODULE(TurboFs)
 
 + (BOOL)requiresMainQueueSetup {
   return YES;

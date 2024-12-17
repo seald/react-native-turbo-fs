@@ -1,8 +1,9 @@
-# react-native-quick-base64
+# @seald-io/react-native-turbo-fs
 
-A native implementation of Base64 in C++ for React Native.
+React-Native Turbo-module for fast FS operations with native ArrayBuffer support
 
-~16x faster than [base64-js](https://github.com/beatgammit/base64-js) on an iPhone 15 Pro Max simulator.
+~18x faster than [react-native-fs](https://www.npmjs.com/package/react-native-fs) on a Nexus 5X, because it avoids having to Base64 / Unbase64 the data back and forth.
+
 Try the benchmarks under [example](./example).
 
 | iPhone                                            | Android                                             |
@@ -12,49 +13,36 @@ Try the benchmarks under [example](./example).
 ## Installation
 
 ```sh
-npm install react-native-quick-base64
+npm install @seald-io/react-native-turbo-fs
 ```
 
 ## Usage
 
 ```js
-import { btoa, atob } from 'react-native-quick-base64'
+import { read, append } from '@seald-io/react-native-turbo-fs'
 
-const base64 = btoa('foo')
-const decoded = atob(base64)
+const buffer = read('my-file-path', 512*1024, 0);
+
+append('my-other-file', buffer);
 ```
 
 ## Methods
 
 Compatible with [base64-js](https://github.com/beatgammit/base64-js).
 
-#### `byteLength(b64: string): number`
+#### `read(filePath: string, size: number, position: number): ArrayBuffer`
 
-Takes a base64 string and returns length of byte array.
+Reads a chunk of size `size` from the file at `filePath`, starting from position `position`.
 
-#### `toByteArray(b64: string, removeLinebreaks: boolean = false): Uint8Array`
+Returns an ArrayBuffer of the data read.
+
+If the file is not long enough, it returns an ArrayBuffer of length of what was actually read.
+
+If there is nothing to read at that position, it returns an ArrayBuffer of length 0.
+
+#### `append(filePath: string, data: ArrayBuffer): void`
 
 Takes a base64 string and returns a byte array. Optional `removeLinebreaks` removes all `\n` characters.
-
-#### `fromByteArray(uint8: Uint8Array, urlSafe: boolean = false): string`
-
-Takes a byte array and returns a base64 string. Optional `urlSafe` flag `true` will use [the URL-safe dictionary](https://github.com/craftzdog/react-native-quick-base64/blob/9d02dfd02599ca104d2ed6c1e2d938ddd9d6cd15/cpp/base64.h#L75).
-
-#### `btoa(data: string): string`
-
-Encodes a string in base64.
-
-#### `atob(b64: string): string`
-
-Decodes a base64 encoded string.
-
-#### `shim()`
-
-Adds `btoa` and `atob` functions to `global`.
-
-#### `trimBase64Padding = (str: string): string`
-
-Trims the `=` padding character(s) off of the end of a base64 encoded string. Also, for base64url encoded strings, it will trim off the trailing `.` character(s).
 
 ## Contributing
 
@@ -62,4 +50,4 @@ See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the 
 
 ## License
 
-MIT by Takuya Matsuyama
+MIT by Seald SAS, based on the template of react-native-quick-base64 by Takuya Matsuyama

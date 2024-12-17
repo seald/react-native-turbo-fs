@@ -1,5 +1,5 @@
 import {expect} from 'chai';
-import {toByteArray} from 'react-native-quick-base64';
+import {toByteArray} from '@seald-io/react-native-turbo-fs';
 import {describe, it} from '../MochaRNAdapter';
 import {mapArr} from './util';
 

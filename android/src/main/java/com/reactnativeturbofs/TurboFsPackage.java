@@ -1,4 +1,4 @@
-package com.reactnativequickbase64;
+package com.reactnativeturbofs;
 
 import androidx.annotation.NonNull;
 
@@ -11,11 +11,11 @@ import java.util.Collections;
 import java.util.List;
 
 
-public class QuickBase64Package implements ReactPackage {
+public class TurboFsPackage implements ReactPackage {
   @NonNull
   @Override
   public List<NativeModule> createNativeModules(@NonNull ReactApplicationContext reactContext) {
-    return Collections.singletonList(new QuickBase64Module(reactContext));
+    return Collections.singletonList(new TurboFsModule(reactContext));
   }
 
   @NonNull

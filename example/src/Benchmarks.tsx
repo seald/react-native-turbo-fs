@@ -3,7 +3,7 @@ import React from 'react';
 import {useState} from 'react';
 import {StyleSheet, View, Text, Pressable, Platform} from 'react-native';
 import jsBase64 from 'base64-js';
-import {toByteArray, fromByteArray} from 'react-native-quick-base64';
+import {toByteArray, fromByteArray} from '@seald-io/react-native-turbo-fs';
 import {data} from './image.json';
 
 const sleep = (t: number) => new Promise(resolve => setTimeout(resolve, t));

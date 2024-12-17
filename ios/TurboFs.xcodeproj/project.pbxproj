@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A21F6DBD2BA8B4B4003A796B /* QuickBase64Module.mm in Sources */ = {isa = PBXBuildFile; fileRef = A21F6DBC2BA8B4B4003A796B /* QuickBase64Module.mm */; };
+		A21F6DBD2BA8B4B4003A796B /* TurboFsModule.mm in Sources */ = {isa = PBXBuildFile; fileRef = A21F6DBC2BA8B4B4003A796B /* TurboFsModule.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,12 +23,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		134814201AA4EA6300B7C361 /* libQuickBase64.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libQuickBase64.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		A21F6DBC2BA8B4B4003A796B /* QuickBase64Module.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = QuickBase64Module.mm; sourceTree = "<group>"; };
-		A21F6DBE2BA8BD13003A796B /* QuickBase64Module.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuickBase64Module.h; sourceTree = "<group>"; };
+		134814201AA4EA6300B7C361 /* libTurboFs.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTurboFs.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A21F6DBC2BA8B4B4003A796B /* TurboFsModule.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TurboFsModule.mm; sourceTree = "<group>"; };
+		A21F6DBE2BA8BD13003A796B /* TurboFsModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TurboFsModule.h; sourceTree = "<group>"; };
 		A21F6DBF2BA8BD3B003A796B /* base64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = base64.h; sourceTree = "<group>"; };
-		A21F6DC02BA8BD3B003A796B /* react-native-quick-base64.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "react-native-quick-base64.cpp"; sourceTree = "<group>"; };
-		A21F6DC12BA8BD3B003A796B /* react-native-quick-base64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "react-native-quick-base64.h"; sourceTree = "<group>"; };
+		A21F6DC02BA8BD3B003A796B /* react-native-turbo-fs.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "react-native-turbo-fs.cpp"; sourceTree = "<group>"; };
+		A21F6DC12BA8BD3B003A796B /* react-native-turbo-fs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "react-native-turbo-fs.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,7 +45,7 @@
 		134814211AA4EA7D00B7C361 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				134814201AA4EA6300B7C361 /* libQuickBase64.a */,
+				134814201AA4EA6300B7C361 /* libTurboFs.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -53,8 +53,8 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
-				A21F6DBC2BA8B4B4003A796B /* QuickBase64Module.mm */,
-				A21F6DBE2BA8BD13003A796B /* QuickBase64Module.h */,
+				A21F6DBC2BA8B4B4003A796B /* TurboFsModule.mm */,
+				A21F6DBE2BA8BD13003A796B /* TurboFsModule.h */,
 				A21F6DC22BA8BD3B003A796B /* cpp */,
 				134814211AA4EA7D00B7C361 /* Products */,
 			);
@@ -64,8 +64,8 @@
 			isa = PBXGroup;
 			children = (
 				A21F6DBF2BA8BD3B003A796B /* base64.h */,
-				A21F6DC02BA8BD3B003A796B /* react-native-quick-base64.cpp */,
-				A21F6DC12BA8BD3B003A796B /* react-native-quick-base64.h */,
+				A21F6DC02BA8BD3B003A796B /* react-native-turbo-fs.cpp */,
+				A21F6DC12BA8BD3B003A796B /* react-native-turbo-fs.h */,
 			);
 			name = cpp;
 			path = ../cpp;
@@ -74,9 +74,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		58B511DA1A9E6C8500147676 /* QuickBase64 */ = {
+		58B511DA1A9E6C8500147676 /* TurboFs */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "QuickBase64" */;
+			buildConfigurationList = 58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "TurboFs" */;
 			buildPhases = (
 				58B511D71A9E6C8500147676 /* Sources */,
 				58B511D81A9E6C8500147676 /* Frameworks */,
@@ -86,9 +86,9 @@
 			);
 			dependencies = (
 			);
-			name = QuickBase64;
+			name = TurboFs;
 			productName = RCTDataManager;
-			productReference = 134814201AA4EA6300B7C361 /* libQuickBase64.a */;
+			productReference = 134814201AA4EA6300B7C361 /* libTurboFs.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -106,7 +106,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "QuickBase64" */;
+			buildConfigurationList = 58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "TurboFs" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -119,7 +119,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				58B511DA1A9E6C8500147676 /* QuickBase64 */,
+				58B511DA1A9E6C8500147676 /* TurboFs */,
 			);
 		};
 /* End PBXProject section */
@@ -129,7 +129,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A21F6DBD2BA8B4B4003A796B /* QuickBase64Module.mm in Sources */,
+				A21F6DBD2BA8B4B4003A796B /* TurboFsModule.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,7 +251,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = QuickBase64;
+				PRODUCT_NAME = TurboFs;
 				SKIP_INSTALL = YES;
 				USE_HEADERMAP = YES;
 			};
@@ -269,7 +269,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = QuickBase64;
+				PRODUCT_NAME = TurboFs;
 				SKIP_INSTALL = YES;
 				USE_HEADERMAP = YES;
 			};
@@ -278,7 +278,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "QuickBase64" */ = {
+		58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "TurboFs" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				58B511ED1A9E6C8500147676 /* Debug */,
@@ -287,7 +287,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "QuickBase64" */ = {
+		58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "TurboFs" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				58B511F01A9E6C8500147676 /* Debug */,

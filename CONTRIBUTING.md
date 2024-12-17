@@ -49,9 +49,9 @@ Remember to add tests for your change if possible. Run the unit tests by:
 yarn test
 ```
 
-To edit the Objective-C files, open `example/ios/QuickBase64Example.xcworkspace` in XCode and find the source files at `Pods > Development Pods > react-native-quick-base64`.
+To edit the Objective-C files, open `example/ios/TurboFsExample.xcworkspace` in XCode and find the source files at `Pods > Development Pods > react-native-turbo-fs`.
 
-To edit the Kotlin files, open `example/android` in Android studio and find the source files at `reactnativequickbase64` under `Android`.
+To edit the Kotlin files, open `example/android` in Android studio and find the source files at `reactnativeturbofs` under `Android`.
 
 ### Commit message convention
 

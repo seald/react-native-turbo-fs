@@ -7,11 +7,11 @@
 #define TIMEOUT_SECONDS 600
 #define TEXT_TO_LOOK_FOR @"Welcome to React"
 
-@interface QuickBase64ExampleTests : XCTestCase
+@interface TurboFsExampleTests : XCTestCase
 
 @end
 
-@implementation QuickBase64ExampleTests
+@implementation TurboFsExampleTests
 
 - (BOOL)findSubviewInView:(UIView *)view matching:(BOOL (^)(UIView *view))test
 {

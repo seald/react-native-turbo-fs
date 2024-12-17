@@ -1,4 +1,4 @@
-package com.reactnativequickbase64;
+package com.reactnativeturbofs;
 
 import androidx.annotation.NonNull;
 
@@ -6,11 +6,11 @@ import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 
-public class QuickBase64Module extends ReactContextBaseJavaModule {
-  public static final String NAME = "QuickBase64";
+public class TurboFsModule extends ReactContextBaseJavaModule {
+  public static final String NAME = "TurboFs";
   private static native void initialize(long jsiPtr, String docDir);
 
-  public QuickBase64Module(ReactApplicationContext reactContext) {
+  public TurboFsModule(ReactApplicationContext reactContext) {
     super(reactContext);
   }
 
@@ -23,7 +23,7 @@ public class QuickBase64Module extends ReactContextBaseJavaModule {
   @ReactMethod(isBlockingSynchronousMethod = true)
   public boolean install() {
     try {
-      System.loadLibrary("quickbase64");
+      System.loadLibrary("turbofs");
 
       ReactApplicationContext context = getReactApplicationContext();
       initialize(

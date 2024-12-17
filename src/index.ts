@@ -1,7 +1,7 @@
 import { NativeModules } from 'react-native'
 import fallback from 'base64-js'
 
-const Base64Module = NativeModules.QuickBase64
+const Base64Module = NativeModules.TurboFs
 
 if (Base64Module && typeof Base64Module.install === 'function') {
   Base64Module.install()
@@ -16,17 +16,17 @@ type FuncBase64FromArrayBuffer = (
   urlSafe?: boolean
 ) => string
 
-export type FuncQuickFsRead = (
+export type FuncTurboFsRead = (
   filePath: string,
   size: number,
   position: number
 ) => ArrayBuffer
-export type FuncQuickFsAppend = (filePath: string, data: ArrayBuffer) => void
+export type FuncTurboFsAppend = (filePath: string, data: ArrayBuffer) => void
 
 declare var base64ToArrayBuffer: FuncBase64ToArrayBuffer | undefined
 declare const base64FromArrayBuffer: FuncBase64FromArrayBuffer | undefined
-declare const quickFsRead: FuncQuickFsRead | undefined
-declare const quickFsAppend: FuncQuickFsAppend | undefined
+declare const turboFsRead: FuncTurboFsRead | undefined
+declare const turboFsAppend: FuncTurboFsAppend | undefined
 
 // from https://github.com/beatgammit/base64-js/blob/master/index.js
 function getLens(b64: string) {
@@ -130,18 +130,18 @@ export const trimBase64Padding = (str: string): string => {
   return str.replace(/[.=]{1,2}$/, '')
 }
 
-export { quickFsAppend, quickFsRead }
+export { turboFsAppend, turboFsRead }
 
 export function read(
   filePath: string,
   size: number,
   position: number
 ): ArrayBuffer {
-  if (quickFsRead !== undefined) return quickFsRead(filePath, size, position)
-  else throw new Error('quickFsRead undefined')
+  if (turboFsRead !== undefined) return turboFsRead(filePath, size, position)
+  else throw new Error('turboFsRead undefined')
 }
 
 export function append(filePath: string, data: ArrayBuffer): void {
-  if (quickFsAppend !== undefined) return quickFsAppend(filePath, data)
-  else throw new Error('quickFsRead undefined')
+  if (turboFsAppend !== undefined) return turboFsAppend(filePath, data)
+  else throw new Error('turboFsRead undefined')
 }

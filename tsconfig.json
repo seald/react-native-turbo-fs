@@ -2,7 +2,7 @@
   "compilerOptions": {
     "rootDir": ".",
     "paths": {
-      "react-native-quick-base64": ["./src/index"],
+      "@seald-io/react-native-turbo-fs": ["./src/index"],
     },
     "allowJs": false,
     "allowUnreachableCode": false,

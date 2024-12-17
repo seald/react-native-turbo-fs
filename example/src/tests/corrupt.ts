@@ -1,5 +1,5 @@
 import {expect} from 'chai';
-import {byteLength, toByteArray} from 'react-native-quick-base64';
+import {byteLength, toByteArray} from '@seald-io/react-native-turbo-fs';
 import {describe, it} from '../MochaRNAdapter';
 
 // from base64-js library's test suite

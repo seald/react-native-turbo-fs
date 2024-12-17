@@ -1,8 +1,8 @@
 #import <React/RCTBridgeModule.h>
 #import <React/RCTEventEmitter.h>
-#import "../cpp/react-native-quick-base64.h"
+#import "../cpp/react-native-turbo-fs.h"
 
-@interface QuickBase64Module : NSObject <RCTBridgeModule>
+@interface TurboFsModule : NSObject <RCTBridgeModule>
 
 @property (nonatomic, assign) BOOL setBridgeOnMainQueue;
 

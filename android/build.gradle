@@ -54,7 +54,7 @@ repositories {
 android {
   compileSdkVersion safeExtGet("compileSdkVersion", 28)
   if (agpVersionMajor >= 7) {
-    namespace 'com.reactnativequickbase64'
+    namespace 'com.reactnativeturbofs'
   }
 
   if (agpVersionMajor >= 8) {

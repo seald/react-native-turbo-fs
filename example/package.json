@@ -1,6 +1,6 @@
 {
-  "name": "react-native-quick-base64-example",
-  "description": "Example app for react-native-quick-base64",
+  "name": "@seald-io/react-native-turbo-fs-example",
+  "description": "Example app for @seald-io/react-native-turbo-fs",
   "version": "0.0.1",
   "private": true,
   "scripts": {
