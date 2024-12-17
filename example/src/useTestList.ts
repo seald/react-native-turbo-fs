@@ -4,6 +4,7 @@ import type {Suites} from '../src/types';
 import {rootSuite} from '../src/MochaRNAdapter';
 
 // these imports load the tests into the root suite
+import './tests/turbo-fs';
 import './tests/basics';
 import './tests/convert';
 import './tests/corrupt';

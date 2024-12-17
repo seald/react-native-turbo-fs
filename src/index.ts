@@ -16,8 +16,17 @@ type FuncBase64FromArrayBuffer = (
   urlSafe?: boolean
 ) => string
 
+export type FuncQuickFsRead = (
+  filePath: string,
+  size: number,
+  position: number
+) => ArrayBuffer
+export type FuncQuickFsAppend = (filePath: string, data: ArrayBuffer) => void
+
 declare var base64ToArrayBuffer: FuncBase64ToArrayBuffer | undefined
 declare const base64FromArrayBuffer: FuncBase64FromArrayBuffer | undefined
+declare const quickFsRead: FuncQuickFsRead | undefined
+declare const quickFsAppend: FuncQuickFsAppend | undefined
 
 // from https://github.com/beatgammit/base64-js/blob/master/index.js
 function getLens(b64: string) {
@@ -119,4 +128,20 @@ export const getNative = () => ({
 
 export const trimBase64Padding = (str: string): string => {
   return str.replace(/[.=]{1,2}$/, '')
+}
+
+export { quickFsAppend, quickFsRead }
+
+export function read(
+  filePath: string,
+  size: number,
+  position: number
+): ArrayBuffer {
+  if (quickFsRead !== undefined) return quickFsRead(filePath, size, position)
+  else throw new Error('quickFsRead undefined')
+}
+
+export function append(filePath: string, data: ArrayBuffer): void {
+  if (quickFsAppend !== undefined) return quickFsAppend(filePath, data)
+  else throw new Error('quickFsRead undefined')
 }
