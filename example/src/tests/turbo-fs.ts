@@ -1,5 +1,5 @@
 import {assert} from 'chai';
-import {read, append} from '@seald-io/react-native-turbo-fs';
+import * as TurboFs from '@seald-io/react-native-turbo-fs';
 import {describe, it} from '../MochaRNAdapter';
 import RNFS from 'react-native-fs';
 
@@ -25,90 +25,35 @@ describe('turbo-fs', () => {
 
   it('append', async () => {
     const buffer = stringToArrayBuffer('test-');
-    append(`${baseDir}/test-file`, buffer);
+    TurboFs.append(`${baseDir}/test-file`, buffer);
 
     const buffer2 = stringToArrayBuffer('data...');
-    append(`${baseDir}/test-file`, buffer2);
+    TurboFs.append(`${baseDir}/test-file`, buffer2);
   });
 
   it('read', async () => {
     // basic read from 0 with given length
-    const buffer = read(`${baseDir}/test-file`, 4, 0);
+    const buffer = TurboFs.read(`${baseDir}/test-file`, 4, 0);
     const decodedString = String.fromCharCode(...new Uint8Array(buffer)); // Convert bytes to a string
     assert.strictEqual(decodedString, 'test');
 
     // read with position
-    const buffer2 = read(`${baseDir}/test-file`, 4, 5);
+    const buffer2 = TurboFs.read(`${baseDir}/test-file`, 4, 5);
     const decodedString2 = String.fromCharCode(...new Uint8Array(buffer2));
     assert.strictEqual(decodedString2, 'data');
 
     // read that reaches EOF
-    const buffer3 = read(`${baseDir}/test-file`, 100, 5);
+    const buffer3 = TurboFs.read(`${baseDir}/test-file`, 100, 5);
     const decodedString3 = String.fromCharCode(...new Uint8Array(buffer3));
     assert.strictEqual(decodedString3, 'data...');
 
     // read just after the end
-    const buffer4 = read(`${baseDir}/test-file`, 100, 12);
+    const buffer4 = TurboFs.read(`${baseDir}/test-file`, 100, 12);
     assert.strictEqual(buffer4.byteLength, 0);
 
     // read far after the end
-    const buffer5 = read(`${baseDir}/test-file`, 100, 100);
+    const buffer5 = TurboFs.read(`${baseDir}/test-file`, 100, 100);
     assert.strictEqual(buffer5.byteLength, 0);
-  });
-
-  it('cleanup after', async () => {
-    await RNFS.unlink(baseDir).catch(() => {});
-  });
-});
-
-describe('turbo-fs performance', () => {
-  const baseDir = `${RNFS.TemporaryDirectoryPath}/react-native-turbo-fs-perf`;
-
-  it('cleanup before', async () => {
-    await RNFS.unlink(baseDir).catch(() => {});
-    await RNFS.mkdir(baseDir);
-  });
-
-  it('turbo-fs performance', async () => {
-    const blockSize = 512 * 1024;
-    const randValues = Array(blockSize)
-      .fill(0)
-      .map(() => Math.floor(Math.random() * 256));
-    const buffer = new ArrayBuffer(randValues.length);
-    const uint8Array = new Uint8Array(buffer);
-    for (let i = 0; i < randValues.length; i++) {
-      uint8Array[i] = randValues[i] as number;
-    }
-
-    // performance for append
-    const fileSizeInMB = 100;
-    const fileSize = fileSizeInMB * 1024 * 1024;
-    const iterations = fileSize / randValues.length;
-    console.log(
-      `Generating ${fileSizeInMB}MB file in ${randValues.length} bytes blocks...`,
-    );
-    let t0 = Date.now();
-    for (let i = 0; i < iterations; i++) {
-      append(`${baseDir}/test-perf`, buffer);
-    }
-    let duration = (Date.now() - t0) / 1000;
-    console.log(`Generated ${fileSizeInMB}MB file in ${duration.toFixed(3)}s`);
-    console.log(`Speed: ${(fileSizeInMB / duration).toFixed(2)}MB/s`);
-
-    // performance for read
-    let readBytes = 0;
-    t0 = Date.now();
-    while (true) {
-      const buff = read(`${baseDir}/test-perf`, blockSize, readBytes);
-      if (buff.byteLength === 0) {
-        break;
-      }
-      readBytes += buff.byteLength;
-    }
-    duration = (Date.now() - t0) / 1000;
-    assert.strictEqual(readBytes, fileSize);
-    console.log(`Read ${fileSizeInMB}MB file in ${duration.toFixed(3)}s`);
-    console.log(`Speed: ${(fileSizeInMB / duration).toFixed(2)}MB/s`);
   });
 
   it('cleanup after', async () => {

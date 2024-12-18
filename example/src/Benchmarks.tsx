@@ -1,75 +1,96 @@
-/* global performance */
 import React from 'react';
 import {useState} from 'react';
 import {StyleSheet, View, Text, Pressable, Platform} from 'react-native';
+import {benchmarkRnfs, benchmarkTurboFs} from './tests/benchmarks';
 
 const sleep = (t: number) => new Promise(resolve => setTimeout(resolve, t));
 
-const round = (num: number, decimalPlaces = 0): string => {
-  return num.toFixed(decimalPlaces);
-};
-
 const Benchmarks = () => {
-  const [processingJSBase64, setProcessingJSBase64] = useState<boolean>(false);
-  const [jsBase64Result, setJSBase64Result] = useState<number>(0);
-  const [processingNativeBase64, setProcessingNativeBase64] =
-    useState<boolean>(false);
-  const [nativeBase64Result, setNativeBase64Result] = useState<number>(0);
+  const [processingTurboFs, setProcessingTurboFs] = useState<boolean>(false);
+  const [turboFsResultAppend, setTurboFsResultAppend] = useState<number>(0);
+  const [turboFsResultRead, setTurboFsResultRead] = useState<number>(0);
+  const [processingRnfs, setProcessingRnfs] = useState<boolean>(false);
+  const [rnfsResultAppend, setRnfsResultAppend] = useState<number>(0);
+  const [rnfsResultRead, setRnfsResultRead] = useState<number>(0);
 
-  const handleNativeBase64Press = async () => {
-    setProcessingNativeBase64(true);
+  const handleTurboFs = async () => {
+    setProcessingTurboFs(true);
     await sleep(1);
-    const startTime = performance.now();
-    // TODO: do our calls calls
-    const finishedTime = performance.now();
-    console.log('done! took', finishedTime - startTime, 'milliseconds');
-    setNativeBase64Result(finishedTime - startTime);
-    setProcessingNativeBase64(false);
+    const res = await benchmarkTurboFs(512 * 1024, 100);
+    setTurboFsResultAppend(res.speedAppend);
+    setTurboFsResultRead(res.speedRead);
+    setProcessingTurboFs(false);
   };
 
-  const handleJSBase64Press = async () => {
-    setProcessingJSBase64(true);
+  const handleRnfs = async () => {
+    setProcessingRnfs(true);
     await sleep(1);
-    const startTime = performance.now();
-    // TODO: do comparison calls
-    const finishedTime = performance.now();
-    console.log('done! took', finishedTime - startTime, 'milliseconds');
-    setJSBase64Result(finishedTime - startTime);
-    setProcessingJSBase64(false);
+    const res = await benchmarkRnfs(512 * 1024, 100);
+    setRnfsResultAppend(res.speedAppend);
+    setRnfsResultRead(res.speedRead);
+    setProcessingRnfs(false);
   };
-  const speedup =
-    jsBase64Result && nativeBase64Result
-      ? round(jsBase64Result / nativeBase64Result) + 'x faster'
+
+  const speedupAppend =
+    turboFsResultAppend && rnfsResultAppend
+      ? `${(turboFsResultAppend / rnfsResultAppend).toFixed(1)}x faster Append`
       : ' ';
+  const speedupRead =
+    turboFsResultRead && rnfsResultRead
+      ? `${(turboFsResultRead / rnfsResultRead).toFixed(1)}x faster Read`
+      : ' ';
+
+  const onPress = async () => {
+    await handleTurboFs();
+    await handleRnfs();
+  };
 
   return (
     <View>
       <View style={styles.lib}>
-        <Text style={styles.heading}>Base64 in C++</Text>
+        <Text style={styles.heading}>TurboFs Append</Text>
         <Text style={styles.result}>
-          {nativeBase64Result > 0
-            ? `${round(nativeBase64Result, 6)} milliseconds`
+          {turboFsResultAppend && turboFsResultAppend > 0
+            ? `${turboFsResultAppend.toFixed(2)} MB/s`
+            : ''}
+        </Text>
+      </View>
+      <View style={styles.lib}>
+        <Text style={styles.heading}>TurboFs Read</Text>
+        <Text style={styles.result}>
+          {turboFsResultRead && turboFsResultRead > 0
+            ? `${turboFsResultRead.toFixed(2)} MB/s`
             : ''}
         </Text>
       </View>
 
       <View style={styles.lib}>
-        <Text style={styles.heading}>base64-js</Text>
+        <Text style={styles.heading}>RNFS Append</Text>
         <Text style={styles.result}>
-          {jsBase64Result > 0 ? `${round(jsBase64Result, 6)} milliseconds` : ''}
+          {rnfsResultAppend && rnfsResultAppend > 0
+            ? `${rnfsResultAppend.toFixed(2)} MB/s`
+            : ''}
+        </Text>
+      </View>
+      <View style={styles.lib}>
+        <Text style={styles.heading}>RNFS Read</Text>
+        <Text style={styles.result}>
+          {rnfsResultRead && rnfsResultRead > 0
+            ? `${rnfsResultRead.toFixed(2)} MB/s`
+            : ''}
         </Text>
       </View>
 
-      <Text style={styles.speedup}>{speedup}</Text>
+      <Text style={styles.speedup}>{speedupAppend}</Text>
+      <Text style={styles.speedup}>{speedupRead}</Text>
 
       <Pressable
         onPress={() => {
-          handleNativeBase64Press();
-          handleJSBase64Press();
+          onPress();
         }}
         style={styles.button}>
         <Text style={styles.pressable}>
-          {processingNativeBase64 || processingJSBase64
+          {processingTurboFs || processingRnfs
             ? 'Processing...'
             : 'Run Benchmarks'}
         </Text>

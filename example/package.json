@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest",
-    "pods": "bundle install && bundle exec pod install --project-directory=ios/"
+    "pods": "if [ \"$(uname -s)\" = \"Darwin\" ]; then bundle install && bundle exec pod install --project-directory=ios/; else echo 'Skipping pods installation: not on macOS.'; fi"
   },
   "dependencies": {
     "buffer": "^6.0.3",
@@ -19,6 +19,7 @@
     "react": "18.2.0",
     "react-native": "0.73.6",
     "react-native-fs": "^2.20.0",
+    "react-native-quick-base64": "^2.1.2",
     "stream-browserify": "^3.0.0",
     "util": "^0.12.5"
   },
