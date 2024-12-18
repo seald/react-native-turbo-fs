@@ -2,18 +2,18 @@
 
 React-Native Turbo-module for fast FS operations with native ArrayBuffer support
 
-~18x faster than [react-native-fs](https://www.npmjs.com/package/react-native-fs) on a Nexus 5X, because it avoids having to Base64 / Unbase64 the data back and forth.
+~20x faster for Append and ~49x faster for Read than [react-native-fs](https://www.npmjs.com/package/react-native-fs) on a Nexus 5X, because it avoids having to Base64 / Unbase64 the data back and forth.
 
 Try the benchmarks under [example](./example).
 
-| iPhone                                            | Android                                             |
-| ------------------------------------------------- | --------------------------------------------------- |
-| ![iPhone](./docs/iphone-15-pro-max-simulator.png) | ![Android](./docs/android-pixel-6-pro-emulator.png) |
+| iPhone                                            | Android                                            |
+| ------------------------------------------------- | -------------------------------------------------- |
+| ![iPhone](./docs/iphone-15-pro-max-simulator.png) | ![Android](./docs/android.png) |
 
 ## Installation
 
 ```sh
-npm install @seald-io/react-native-turbo-fs
+npm install -S @seald-io/react-native-turbo-fs
 ```
 
 ## Usage
