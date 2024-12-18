@@ -16,6 +16,7 @@
     "react-native-turbo-fs.podspec",
     "!lib/typescript/example",
     "!android/build",
+    "!android/.cxx",
     "!ios/build",
     "!**/__tests__",
     "!**/__fixtures__",
@@ -36,7 +37,10 @@
     "ios",
     "android"
   ],
-  "repository": "https://github.com/seald/react-native-turbo-fs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seald/react-native-turbo-fs.git"
+  },
   "author": "Seald SAS <contact@seald.io> (https://github.com/seald)",
   "license": "MIT",
   "bugs": {
@@ -44,6 +48,7 @@
   },
   "homepage": "https://github.com/seald/react-native-turbo-fs#readme",
   "publishConfig": {
+    "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
   "devDependencies": {
