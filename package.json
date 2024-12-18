@@ -1,6 +1,6 @@
 {
   "name": "@seald-io/react-native-turbo-fs",
-  "version": "0.1.0",
+  "version": "0.1.0-beta.0",
   "description": "React-Native Turbo-module for fast FS operations with native ArrayBuffer support ",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -136,6 +136,5 @@
       ]
     ]
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
